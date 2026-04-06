@@ -5,16 +5,14 @@ import {
   getAllreadListfromLocal,
   ReadListLocalstorage,
 } from "../Local/Localstorage";
+import { getAllWishListfromLocal, WishLocal } from "../Local/WishLocal";
 
 export const ReadBookContext = createContext();
 
 const BookContext = ({ children }) => {
   const [storeBooks, setStoreBooks] = useState(() => getAllreadListfromLocal());
-  const [wishList, setWishList] = useState([]);
-  // useEffect(() => {
-  //   const getLocal = getAllreadListfromLocal();
-  //   console.log(getLocal, "getAllreadListfromLocal");
-  // }, []);
+  const [wishList, setWishList] = useState(() => getAllWishListfromLocal());
+
   const bookContext = useContext(ReadBookContext);
   console.log(bookContext);
   const handleMarksAsRead = (currentBook) => {
@@ -32,6 +30,8 @@ const BookContext = ({ children }) => {
     }
   };
   const handleWishList = (currentBook) => {
+    WishLocal(currentBook);
+
     const isExsistingReadList = storeBooks.find(
       (book) => book.bookId === currentBook.bookId,
       console.log("vngkjdfsjsd"),
