@@ -19,12 +19,13 @@ const BookContext = ({ children }) => {
       return;
     } else {
       setStoreBooks([...storeBooks, currentBook]);
-      toast.success(`${currentBook.bookName} is added to list`);
+      toast.success(`${currentBook.bookName} is added to read list`);
     }
   };
   const handleWishList = (currentBook) => {
-    const isExsistingReadList = storeBooks.map(
+    const isExsistingReadList = storeBooks.find(
       (book) => book.bookId === currentBook.bookId,
+      console.log("vngkjdfsjsd")
     );
     if(isExsistingReadList){
       toast.error("already in readlist")
@@ -34,13 +35,13 @@ const BookContext = ({ children }) => {
     console.log("click", currentBook);
     const isExsists = wishList.find(
       (book) => book.bookId === currentBook.bookId,
+      console.log(wishList,"woiefrwugfj")
     );
     if (isExsists) {
       toast.error("bookd already here");
-      return;
     } else {
       setWishList([...wishList, currentBook]);
-      toast.success(`${currentBook.bookName} is added to list`);
+      toast.success(`${currentBook.bookName} is added to wish list`);
     }
   };
   const data = {
